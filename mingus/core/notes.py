@@ -72,7 +72,7 @@ def is_enharmonic(note1, note2):
 
 def is_valid_note(note):
     """Return True if note is in a recognised format. False if not."""
-    if not note[0] in _note_dict:
+    if not note[0].upper() in _note_dict:
         return False
     for post in note[1:]:
         if post != 'b' and post != '#':
@@ -86,7 +86,7 @@ def note_to_int(note):
     Throw a NoteFormatError exception if the note format is not recognised.
     """
     if is_valid_note(note):
-        val = _note_dict[note[0]]
+        val = _note_dict[note[0].upper()]
     else:
         raise NoteFormatError("Unknown note format '%s'" % note)
 

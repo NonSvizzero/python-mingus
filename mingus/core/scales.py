@@ -94,9 +94,6 @@ class _Scale(object):
     """
 
     def __init__(self, note, octaves):
-        if note.islower():
-            raise NoteFormatError("Unrecognised note '%s'" % note)
-
         self.tonic = note
         self.octaves = octaves
 
