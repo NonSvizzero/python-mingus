@@ -52,10 +52,10 @@ Other scales
  * Octatonic(note)
 """
 
-import intervals
-from notes import augment, diminish, reduce_accidentals
-from keys import keys, get_notes
-from mt_exceptions import NoteFormatError, FormatError, RangeError
+from mingus.core import intervals
+from mingus.core.notes import augment, diminish, reduce_accidentals
+from mingus.core.keys import keys, get_notes
+from mingus.core.mt_exceptions import NoteFormatError, FormatError, RangeError
 
 def determine(notes):
     """Determine the scales containing the notes.
@@ -379,6 +379,52 @@ class HarmonicMajor(_Scale):
         return notes * self.octaves + [notes[0]]
 
 
+class MajorPentatonic(_Scale):
+
+    """The major pentatonic scale.
+
+    Example:
+    >>> print MajorPentatonic('A')
+    Ascending:  A B C# E F# A
+    Descending: A F# E C# B A
+    """
+
+    type = 'major'
+
+    def __init__(self, note, octaves=1):
+        """Create the major pentatonic scale starting on the chosen note."""
+        super(MajorPentatonic, self).__init__(note, octaves)
+        self.name = '{0} major pentatonic'.format(self.tonic)
+
+    def ascending(self):
+        notes = Major(self.tonic).ascending()[:-1]
+        notes = [note for i, note in enumerate(notes, 1) if i not in (4, 7)]
+        return notes * self.octaves + [notes[0]]
+
+
+class MajorBlues(_Scale):
+
+    """The major blues scale.
+
+    Example:
+    >>> print MajorBlues('A')
+    Ascending:  A B C C# E F# A
+    Descending: A F# E C# C B A
+    """
+
+    type = 'major'
+
+    def __init__(self, note, octaves=1):
+        """Create the major blues scale starting on the chosen note."""
+        super(MajorBlues, self).__init__(note, octaves)
+        self.name = '{0} major blues'.format(self.tonic)
+
+    def ascending(self):
+        notes = MajorPentatonic(self.tonic).ascending()[:-1]
+        notes.insert(2, diminish(notes[2]))
+        return notes * self.octaves + [notes[0]]
+
+
 # The minor scales
 
 class NaturalMinor(_Scale):
@@ -502,6 +548,52 @@ class MinorNeapolitan(_Scale):
     def descending(self):
         notes = NaturalMinor(self.tonic).descending()[:-1]
         notes[6] = diminish(notes[6])
+        return notes * self.octaves + [notes[0]]
+
+
+class MinorPentatonic(_Scale):
+
+    """The minor pentatonic scale.
+
+    Example:
+    >>> print MinorPentatonic('A')
+    Ascending:  A C D E G A
+    Descending: A G E D C A
+    """
+
+    type = 'minor'
+
+    def __init__(self, note, octaves=1):
+        """Create the minor pentatonic scale starting on the chosen note."""
+        super(MinorPentatonic, self).__init__(note, octaves)
+        self.name = '{0} minor pentatonic'.format(self.tonic)
+
+    def ascending(self):
+        notes = NaturalMinor(self.tonic).ascending()[:-1]
+        notes = [note for i, note in enumerate(notes, 1) if i not in (2, 6)]
+        return notes * self.octaves + [notes[0]]
+
+
+class MinorBlues(_Scale):
+
+    """The minor blues scale.
+
+    Example:
+    >>> print MinorBlues('A')
+    Ascending:  A C D E Gb G A
+    Descending: A G Gb E D C A
+    """
+
+    type = 'minor'
+
+    def __init__(self, note, octaves=1):
+        """Create the major scale starting on the chosen note."""
+        super(MinorBlues, self).__init__(note, octaves)
+        self.name = '{0} minor blues'.format(self.tonic)
+
+    def ascending(self):
+        notes = MinorPentatonic(self.tonic).ascending()[:-1]
+        notes.insert(3, diminish(notes[3]))
         return notes * self.octaves + [notes[0]]
 
 

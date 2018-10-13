@@ -171,6 +171,32 @@ class test_scales(unittest.TestCase):
                 ['F', 'E', 'Db', 'C', 'Bb', 'A', 'G', 'F'])
             }, scales.HarmonicMajor, 'harmonic major scale')
 
+    def test_major_pentatonic(self):
+        self.scaleTest({
+            'C': (
+                ['C', 'D', 'E', 'G', 'A', 'C'],
+                ['C', 'A', 'G', 'E', 'D', 'C']),
+            'A': (
+                ['A', 'B', 'C#', 'E', 'F#', 'A'],
+                ['A', 'F#', 'E', 'C#', 'B', 'A']),
+            'F': (
+                ['F', 'G', 'A', 'C', 'D', 'F'],
+                ['F', 'D', 'C', 'A', 'G', 'F'])
+            }, scales.MajorPentatonic, 'major pentatonic scale')
+
+    def test_major_blues(self):
+        self.scaleTest({
+            'C': (
+                ['C', 'D', 'Eb', 'E', 'G', 'A', 'C'],
+                ['C', 'A', 'G', 'E', 'Eb', 'D', 'C']),
+            'A': (
+                ['A', 'B', 'C', 'C#', 'E', 'F#', 'A'],
+                ['A', 'F#', 'E', 'C#', 'C', 'B', 'A']),
+            'F': (
+                ['F', 'G', 'Ab', 'A', 'C', 'D', 'F'],
+                ['F', 'D', 'C', 'A', 'Ab', 'G', 'F'])
+            }, scales.MajorBlues, 'major blues scale')
+
     def test_natural_minor(self):
         self.scaleTest({
             'C': (
@@ -238,6 +264,32 @@ class test_scales(unittest.TestCase):
                 ['B', 'C', 'D', 'E', 'F#', 'G', 'A#', 'B'],
                 ['B', 'A', 'G', 'F#', 'E', 'D', 'C', 'B'])
             }, scales.MinorNeapolitan, 'minor Neapolitan scale')
+
+    def test_minor_pentatonic(self):
+        self.scaleTest({
+            'C': (
+                ['C', 'Eb', 'F', 'G', 'Bb', 'C'],
+                ['C', 'Bb', 'G', 'F', 'Eb', 'C']),
+            'E': (
+                ['E', 'G', 'A', 'B', 'D', 'E'],
+                ['E', 'D', 'B', 'A', 'G', 'E']),
+            'B': (
+                ['B', 'D', 'E', 'F#', 'A', 'B'],
+                ['B', 'A', 'F#', 'E', 'D', 'B'])
+            }, scales.MinorPentatonic, 'minor pentatonic scale')
+
+    def test_minor_blues(self):
+        self.scaleTest({
+            'C': (
+                ['C', 'Eb', 'F', 'Gb', 'G', 'Bb', 'C'],
+                ['C', 'Bb', 'G', 'Gb', 'F', 'Eb', 'C']),
+            'E': (
+                ['E', 'G', 'A', 'Bb', 'B', 'D', 'E'],
+                ['E', 'D', 'B', 'Bb', 'A', 'G', 'E']),
+            'B': (
+                ['B', 'D', 'E', 'F', 'F#', 'A', 'B'],
+                ['B', 'A', 'F#', 'F', 'E', 'D', 'B'])
+            }, scales.MinorBlues, 'minor blues scale')
 
     def test_chromatic(self):
         self.scaleTest({
