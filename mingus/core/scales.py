@@ -38,6 +38,8 @@ Ancient scales
 The major scales
  * Major(note)
  * HarmonicMajor(note)
+ * MajorPentatonic(note)
+ * MajorBlues(note)
 
 The minor scales
  * NaturalMinor(note)
@@ -45,6 +47,8 @@ The minor scales
  * MelodicMinor(note)
  * Bachian(note)
  * MinorNeapolitan(note)
+ * MinorPentatonic(note)
+ * MinorBlues(note)
 
 Other scales
  * Chromatic(note)
